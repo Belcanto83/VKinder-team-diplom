@@ -28,10 +28,6 @@ class VKinderPostgresqlDB:
         session = self.class_session()
         return session
 
-    # @staticmethod
-    # def new_row(model, data):
-    #     return model(**data)
-
     @staticmethod
     def add_row(session, model, data):
         row = model(**data)

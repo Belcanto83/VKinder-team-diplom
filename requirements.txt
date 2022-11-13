@@ -1,0 +1,4 @@
+requests>=2.28.1
+psycopg2-binary>=2.9.5
+SQLAlchemy>=1.4.43
+vk-api>=11.9.9
