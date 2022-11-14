@@ -105,15 +105,18 @@ class BotFunction:
     def show_favorites_list(self):
         """Выводит информацию о добавленных в 'избранный список' профилях
         Формат: <ИО><ссылка на профиль>"""
-
+        list_favorite = []
         try:
             VKinder_DB = VKinderPostgresqlDB()
             session = VKinder_DB.new_session()
             with session:
                 try:
-                    value = session.query(UserMark).filter(UserMark.user_id == self.vk_user_id, UserMark.marked_user_id == marked_user, UserMark.mark_id == 1).all()
+                    value = session.query(UserMark).filter(UserMark.user_id == self.vk_user_id, UserMark.mark_id == 1).all()
                     for id in value:
-                        text = print(id.marked_user_id)
+                        list_favorite.append(f'https://vk.com/id{id.marked_user_id}')
+                    # text = ''.join(f'https://vk.com/id{id.marked_user_id}')
+                    text = '\n'.join(list_favorite)
+                    print(text)
                 except IntegrityError:
                     session.rollback()
         except OperationalError as err:
@@ -139,7 +142,7 @@ class BotFunction:
             session = VKinder_DB.new_session()
             with session:
                 try:
-                    value = session.query(UserMark).filter(UserMark.user_id == self.vk_user_id, UserMark.marked_user_id == marked_user, UserMark.mark_id == 1).all()
+                    value = session.query(UserMark).filter(UserMark.user_id == self.vk_user_id, UserMark.marked_user_id == marked_user, UserMark.mark_id == 0).all()
                     if len(value) == 0:
                             session.add(UserMark(
                                 user_id = self.vk_user_id, 

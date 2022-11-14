@@ -23,7 +23,8 @@ second_keyboard = {
     "buttons": [
         [get_button("следующий профиль", "positive")],
         [get_button("добавить в избранное", "positive"), get_button("список избранных", "positive")],
-        [get_button("изменить поисковые данные", "primary"), get_button("help", "secondary")],
+        [get_button("изменить поисковые данные", "primary"), get_button("help", "primary")],
+        [get_button("Добавить в черный список", "negative")]
     ]
 }
 start_keyboard = json.dumps(start_keyboard, ensure_ascii=False).encode("utf-8")
