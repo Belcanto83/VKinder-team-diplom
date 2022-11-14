@@ -1,5 +1,5 @@
 import requests
-from token_file import token_vk_app
+from Modul.token_file import token_vk_app
 
 """Парсит входные данные по поиску профилей пользователя используя Api Vkontakte """
 
