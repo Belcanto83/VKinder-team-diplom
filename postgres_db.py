@@ -12,9 +12,9 @@ class VKinderPostgresqlDB:
     """Wrapper class for VKinder postgres database"""
 
     def __init__(self):
-        self.db_name = 'postgres' #db_name
-        self.db_user = 'postgres' #credentials.get('user')
-        self.db_pass = 'postgres' #credentials.get('pass')
+        self.db_name = 'postgres' # имя бд
+        self.db_user = 'postgres' # имя пользователя
+        self.db_pass = 'postgres' # пароль
         self._engine = self.create_db_engine()
         self.create_tables()
         self.class_session = sessionmaker(bind=self._engine)
@@ -29,10 +29,6 @@ class VKinderPostgresqlDB:
 
     def drop_database(self):
         Base.metadata.drop_all(self._engine)
-
-    # def new_session(self):
-    #     session = self.class_session()
-    #     return session
 
     def new_session(self):
         session = self.class_session()

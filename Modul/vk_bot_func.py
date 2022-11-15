@@ -16,8 +16,6 @@ class BotFunction:
         self.sex = sex
         self.age_from = age_from
         self.age_to = age_to
-        # self.favorite_list = []
-        # self.black_list = []
         self.vk_user_id = vk_user_id
         self.insert_user()
 
@@ -95,13 +93,6 @@ class BotFunction:
             print('Ошибка подключения к БД:', err)
         return text
 
-        # if self.dataset not in self.favorite_list:
-        #     self.favorite_list.append(self.dataset)
-        #     text = f"Профиль '{self.dataset['profile_name']}' добавлен в избранное"
-        # else:
-        #     text = f"Профиль '{self.dataset['profile_name']}' уже был в избранном"
-        # return text
-
     def show_favorites_list(self):
         """Выводит информацию о добавленных в 'избранный список' профилях
         Формат: <ИО><ссылка на профиль>"""
@@ -114,7 +105,6 @@ class BotFunction:
                     value = session.query(UserMark).filter(UserMark.user_id == self.vk_user_id, UserMark.mark_id == 1).all()
                     for id in value:
                         list_favorite.append(f'https://vk.com/id{id.marked_user_id}')
-                    # text = ''.join(f'https://vk.com/id{id.marked_user_id}')
                     text = '\n'.join(list_favorite)
                     print(text)
                 except IntegrityError:
@@ -122,17 +112,6 @@ class BotFunction:
         except OperationalError as err:
             print('Ошибка подключения к БД:', err)
         return text
-
-
-        # count = 0
-        # text = ""
-        # if len(self.favorite_list)>0:
-        #     for user in self.favorite_list:
-        #         count += 1
-        #         text += f"{count}: {user['profile_name']} ссылка: {user['link']}\n"
-        # else:
-        #     text = "Список избранных пока пуст"
-        # return text
 
     def add_to_black_list(self, marked_user):
         """добавляет последний профиль в 'черный список'
@@ -158,6 +137,3 @@ class BotFunction:
         except OperationalError as err:
             print('Ошибка подключения к БД:', err)
         return text
-        # self.black_list.append(self.dataset)
-        # text = f"Профиль {self.dataset['profile_name']} больше не отобразится"
-        # return text

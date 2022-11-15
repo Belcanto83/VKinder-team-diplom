@@ -4,8 +4,6 @@ from Modul.token_file import token_vk_group_bot
 from Modul.config import start_keyboard, second_keyboard, error_message, bot_messages
 from Modul.vk_bot_func import BotFunction
 
-# import database_pg.script_in_db as db
-# from database_pg.postgres_db import 
 
 vk_session = vk_api.VkApi(token=token_vk_group_bot)
 session_api = vk_session.get_api()
