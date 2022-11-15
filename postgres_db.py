@@ -40,7 +40,7 @@ class VKinderPostgresqlDB:
         session.add(row)
         return session
 
-
+# Добавить флаги (black list/favorite list) в таблицу Mark
 def insert_mark():
     num_0 = Mark(
         mark_id = 0,
